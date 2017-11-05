@@ -1,6 +1,12 @@
 # mine
 Text-based minesweeper written in Clojure.
 
+To play, just download the .jar file and type into your terminal:
+
+java -jar PATH/mine-0.1.0-SNAPSHOT-standalone.jar
+
+where PATH points to the folder it's in.
+
 ![](https://github.com/sdfwer124/Terminal-Sweeper/blob/master/mine1.png)
 
 This was a fun problem that turns out to be way more of a challenge than you might think.
