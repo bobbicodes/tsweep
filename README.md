@@ -1,6 +1,8 @@
 # mine
 Text-based minesweeper written in Clojure.
+
 ![](https://github.com/sdfwer124/Terminal-Sweeper/blob/master/mine1.png)
+
 This was a fun problem that turns out to be way more of a challenge than you might think.
 A random set of integers is chosen to represent the squares with mines,
 to be placed on a square grid made up of a variable number of rows.
