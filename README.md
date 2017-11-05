@@ -31,4 +31,4 @@ I'm still trying to figure out a way to do this,
 because as it is, not all the squares are cleared that should be,
 and while I think I understand why,
 nothing that I do seems to fix it.
-However, it still works and manages to be quite enjoyable to play.
+However, the game still totally works!
