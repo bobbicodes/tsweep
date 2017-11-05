@@ -1,4 +1,3 @@
-# mine
 Text-based minesweeper written in Clojure.
 
 To play, just download the .jar file and type into your terminal:
