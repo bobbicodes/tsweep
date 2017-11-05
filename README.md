@@ -32,3 +32,5 @@ because as it is, not all the squares are cleared that should be,
 and while I think I understand why,
 nothing that I do seems to fix it.
 However, the game still totally works!
+
+As long as you don't press enter...
