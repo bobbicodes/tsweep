@@ -206,7 +206,7 @@ board
 
 (defn get-input
   "Waits for user to enter text and hit enter, then cleans the input"
-  ([] (get-input ""))
+  ([] (get-input "0"))
   ([default]
      (let [input (clojure.string/trim (read-line))]
        (if (empty? input)
