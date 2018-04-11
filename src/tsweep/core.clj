@@ -1,8 +1,6 @@
 (ns tsweep.core
   (:gen-class))
 
-;; create board:
-;to be changed by user
 (def rows 6)
 
 (defn create-board [rows set]
@@ -140,34 +138,15 @@ board
 
 (def squares  (tl-add (t-add (tr-add (l-add (r-add (bl-add (b-add (br-add board)))))))))
 
-;; populate the board with mines:
-
 (defn set-mines [set n squares] 
   (if (= n (count set))
     set
         (recur (conj set (int (rand squares))) n squares)))
 
-
-(def num-mines 6)
+(def num-mines 5)
 (def mines (set-mines #{} num-mines (count squares)))
 (defn mine-detector [square]
   (count ((fn [a b] (set (filter #(contains? b %) a))) mines (set (squares square)))))
-
-(def ansi-styles
-  {:red   "[31m"
-   :green "[32m"
-   :blue  "[34m"
-   :reset "[0m"})
-
-(defn ansi
-  "Produce a string which will apply an ansi style"
-  [style]
-  (str \u001b (style ansi-styles)))
-
-(defn colorize
-  "Apply ansi color to text"
-  [text color]
-  (str (ansi color) text (ansi :reset)))
 
 (def stepped #{})
 
@@ -177,18 +156,18 @@ board
 (def stepped (into stepped (squares square))))
 (if (= 0 (mine-detector square))
 (str "     ")
-(str "  " (colorize (str (mine-detector square) ) :blue) "  "))))
+(str "  " (mine-detector square) "  "))))
 
 (defn full [square]
   (if (> 10 square)
-      (str (colorize "XX" :green) square (colorize "XX" :green))
+      (str "XX" square "XX")
 (if (< 99 square)
-  (str (colorize "X" :green) square (colorize "X" :green))      
-  (str (colorize "X" :green) square (colorize "XX" :green)))))
+  (str "X" square "X")      
+  (str "X" square "XX"))))
 
-(defn full-blank [square] (str (colorize "XXXXX" :green)))
+(defn full-blank [square] (str"XXXXX"))
 (defn clear-blank [square] (str "     "))
-(def mined (colorize "  !!!  " :red))
+(def mined "  !!!  ")
 
 (defn paint-blank [square]
   (if (contains? stepped square)
