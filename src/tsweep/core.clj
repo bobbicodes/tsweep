@@ -143,7 +143,7 @@ board
     set
         (recur (conj set (int (rand squares))) n squares)))
 
-(def num-mines 5)
+(def num-mines 4)
 (def mines (set-mines #{} num-mines (count squares)))
 (defn mine-detector [square]
   (count ((fn [a b] (set (filter #(contains? b %) a))) mines (set (squares square)))))
@@ -202,7 +202,6 @@ board
   (println (map paint (range 30 36)))
   (println (map paint-blank (range 30 36))))
 
-(def stepped #{})
 (defn step [square] (do (def stepped (conj stepped square)) (painter)))
 
 (defn get-input
