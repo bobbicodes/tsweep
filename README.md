@@ -17,5 +17,5 @@ Install Leiningen, clone this repo and enter (from its directory):
 The grid size is configurable, and is represented as an indexed vector of hashsets which are
 dynamically assembled by a series of functions that determine where the edges of the board are for that configuration.
 
-A random set of integers is chosen to represent the squares with mines,which are uncovered as they are stepped on to indicate how many mines are surrounding it.
+A random set of integers is chosen to represent the squares with mines, which are uncovered as they are stepped on to indicate how many mines are surrounding them.
 
