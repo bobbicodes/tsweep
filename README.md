@@ -4,7 +4,7 @@ To play, just download the .jar file and launch with:
 
 where PATH points to the folder it's in.
 
-![](https://github.com/sdfwer124/Terminal-Sweeper/blob/master/mine1.png)
+[![asciicast](https://asciinema.org/a/177672.png)](https://asciinema.org/a/177672)
 
 ## Or, from source:
 
