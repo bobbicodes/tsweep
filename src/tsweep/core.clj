@@ -11,174 +11,243 @@
 (def board (create-board rows [#{}]))
 
 (defn l-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
+         board
         (if (not= 0 (rem square rows))
-            (recur (assoc board square (conj (get board square) (dec square))) (dec square))
-(recur board (dec square))))))
+            (recur (assoc board square
+			         (conj (get board square)
+					       (dec square)))
+		    (dec square))
+        (recur board (dec square))))))
 
 (defn b-add [coll]
- (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-board
-(if (> (- (* rows rows) rows) square)
-(recur (assoc board square (conj (get board square) (+ rows square))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (> (- (* rows rows) rows) square)
+          (recur (assoc board square
+                   (conj (get board square)
+                         (+ rows square)))
+          (dec square))
+        (recur board (dec square))))))
 
 (defn bl-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (> (- (* rows rows) rows)  square) (not= 0 (rem square rows)))
-          (recur (assoc board square (conj (get board square) (dec (+ rows square)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (> (- (* rows rows) rows) square)
+                 (not= 0 (rem square rows)))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (dec (+ rows square))))
+            (dec square))
+        (recur board (dec square))))))
 
 (defn br-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (> (- (* rows rows) rows)  square) (not= 0 (rem (inc square) rows)))
-          (recur (assoc board square (conj (get board square) (inc (+ rows square)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (> (- (* rows rows) rows) square)
+                 (not= 0 (rem (inc square) rows)))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (inc (+ rows square))))
+            (dec square))
+        (recur board (dec square))))))
 
 (defn r-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
+         board
         (if (not= 0 (rem (inc square) rows))
-            (recur (assoc board square (conj (get board square) (inc square))) (dec square))
-(recur board (dec square))))))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (inc square)))
+            (dec square))
+        (recur board (dec square))))))
 
 (defn t-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
+         board
         (if (< rows (inc square))
-            (recur (assoc board square (conj (get board square) (- square rows))) (dec square))
-(recur board (dec square))))))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (- square rows)))
+            (dec square))
+    (recur board (dec square))))))
 
 (defn tl-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (< rows (inc square)) (not= 0 (rem square rows)))
-          (recur (assoc board square (conj (get board square) (dec (- square rows)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (< rows (inc square))
+                 (not= 0 (rem square rows)))
+            (recur (assoc board square
+                     (conj (get board square)
+                       (dec (- square rows))))
+            (dec square))
+    (recur board (dec square))))))
 
 (defn tr-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (< rows (inc square)) (not= 0 (rem (inc square) rows)))
-          (recur (assoc board square (conj (get board square) (inc (- square rows)))) (dec square))
-(recur board (dec square))))))(defn l-add [coll]
-        (loop [board coll square (dec (count coll))]
+         board
+        (if (and (< rows (inc square))
+                 (not= 0 (rem (inc square) rows)))
+            (recur (assoc board square
+              (conj (get board square)
+                (inc (- square rows))))
+            (dec square))
+    (recur board (dec square))))))
+
+(defn l-add [coll]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
+         board
         (if (not= 0 (rem square rows))
-            (recur (assoc board square (conj (get board square) (dec square))) (dec square))
-(recur board (dec square))))))
+            (recur (assoc board square
+              (conj (get board square)
+                (dec square)))
+            (dec square))
+    (recur board (dec square))))))
 
 (defn b-add [coll]
- (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-board
-(if (> (- (* rows rows) rows) square)
-(recur (assoc board square (conj (get board square) (+ rows square))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (> (- (* rows rows) rows) square)
+            (recur (assoc board square
+              (conj (get board square)
+                (+ rows square)))
+            (dec square))
+    (recur board (dec square))))))
 
 (defn bl-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (> (- (* rows rows) rows)  square) (not= 0 (rem square rows)))
-          (recur (assoc board square (conj (get board square) (dec (+ rows square)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (> (- (* rows rows) rows) square)
+                 (not= 0 (rem square rows)))
+            (recur (assoc board square
+              (conj (get board square)
+                (dec (+ rows square))))
+            (dec square))
+    (recur board (dec square))))))
 
 (defn br-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (> (- (* rows rows) rows)  square) (not= 0 (rem (inc square) rows)))
-          (recur (assoc board square (conj (get board square) (inc (+ rows square)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (> (- (* rows rows) rows) square)
+                 (not= 0 (rem (inc square) rows)))
+            (recur (assoc board square
+              (conj (get board square)
+                (inc (+ rows square))))
+            (dec square))
+     (recur board (dec square))))))
 
 (defn r-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
+         board
         (if (not= 0 (rem (inc square) rows))
-            (recur (assoc board square (conj (get board square) (inc square))) (dec square))
-(recur board (dec square))))))
+            (recur (assoc board square
+              (conj (get board square)
+                (inc square)))
+            (dec square))
+        (recur board (dec square))))))
 
 (defn t-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
+         board
         (if (< rows (inc square))
-            (recur (assoc board square (conj (get board square) (- square rows))) (dec square))
-(recur board (dec square))))))
+            (recur (assoc board square
+              (conj (get board square)
+                (- square rows)))
+            (dec square))
+        (recur board (dec square))))))
 
 (defn tl-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (< rows (inc square)) (not= 0 (rem square rows)))
-          (recur (assoc board square (conj (get board square) (dec (- square rows)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (< rows (inc square))
+                 (not= 0 (rem square rows)))
+            (recur (assoc board square
+              (conj (get board square)
+                (dec (- square rows))))
+            (dec square))
+    (recur board (dec square))))))
 
 (defn tr-add [coll]
-        (loop [board coll square (dec (count coll))]
+  (loop [board coll square (dec (count coll))]
     (if (> 0 square)
-        board
-        (if (and (< rows (inc square)) (not= 0 (rem (inc square) rows)))
-          (recur (assoc board square (conj (get board square) (inc (- square rows)))) (dec square))
-(recur board (dec square))))))
+         board
+        (if (and (< rows (inc square))
+                 (not= 0 (rem (inc square) rows)))
+            (recur (assoc board square
+              (conj (get board square)
+                (inc (- square rows))))
+            (dec square))
+    (recur board (dec square))))))
 
-(def squares  (tl-add (t-add (tr-add (l-add (r-add (bl-add (b-add (br-add board)))))))))
+(def squares (tl-add (t-add (tr-add (l-add
+  (r-add (bl-add (b-add (br-add board)))))))))
 
 (defn set-mines [set n squares] 
   (if (= n (count set))
-    set
-        (recur (conj set (int (rand squares))) n squares)))
+       set
+      (recur (conj set (int (rand squares)))
+        n squares)))
 
 (def num-mines 4)
+
 (def mines (set-mines #{} num-mines (count squares)))
+
 (defn mine-detector [square]
-  (count ((fn [a b] (set (filter #(contains? b %) a))) mines (set (squares square)))))
+  (count
+    ((fn [a b] (set (filter #(contains? b %) a)))
+        mines (set (squares square)))))
 
 (def stepped #{})
 
 (defn clear [square]
   (do 
-(if (= 0 (mine-detector square))
-(def stepped (into stepped (squares square))))
-(if (= 0 (mine-detector square))
-(str "     ")
-(str "  " (mine-detector square) "  "))))
+    (if (= 0 (mine-detector square))
+        (def stepped (into stepped (squares square))))
+        (if (= 0 (mine-detector square))
+            (str "     ")
+            (str "  " (mine-detector square) "  "))))
 
 (defn full [square]
   (if (> 10 square)
       (str "XX" square "XX")
-(if (< 99 square)
-  (str "X" square "X")      
-  (str "X" square "XX"))))
+      (if (< 99 square)
+          (str "X" square "X")      
+          (str "X" square "XX"))))
 
 (defn full-blank [square] (str"XXXXX"))
+
 (defn clear-blank [square] (str "     "))
+
 (def mined "  !!!  ")
 
 (defn paint-blank [square]
   (if (contains? stepped square)
-      (if (contains? mines square) mined (clear-blank square)) (full-blank square)))
+      (if (contains? mines square)
+           mined
+          (clear-blank square))
+      (full-blank square)))
 
 (defn paint [square]
   (if (contains? stepped square)
       (if (contains? mines square)
-          mined
+           mined
           (clear square))
-    (full square)))
+      (full square)))
 
 (def board-rows (partition rows squares))
 
@@ -218,7 +287,7 @@ board
          (+ (count stepped) (count mines))) 
       (println "GOOD JOB!")      
   (if (< 0 (count ((fn [a b] (set (filter #(contains? b %) a))) stepped mines)))
-            (println "Boom. You died.")
+            (println "Blam. You died.")
       (do (println "Tread lightly, if you dare...")
                 (let [square (Integer. (get-input))] (step square))
                 (prompt-step)))))
