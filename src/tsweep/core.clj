@@ -194,8 +194,16 @@
             (dec square))
     (recur board (dec square))))))
 
-(def squares (tl-add (t-add (tr-add (l-add
-  (r-add (bl-add (b-add (br-add board)))))))))
+(def squares
+  (-> board
+	(br-add)
+	(b-add)
+	(bl-add)
+	(r-add)
+	(l-add)
+	(tl-add)
+	(t-add)
+	(tr-add)))
 
 (defn set-mines [set n squares] 
   (if (= n (count set))
