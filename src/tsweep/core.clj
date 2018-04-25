@@ -213,22 +213,23 @@
 
 (def num-mines 4)
 
-(def mines (set-mines #{} num-mines (count squares)))
+(def mines
+  (set-mines #{} num-mines
+    (count squares)))
 
 (defn mine-detector [square]
   (count
     ((fn [a b] (set (filter #(contains? b %) a)))
         mines (set (squares square)))))
 
-(def stepped #{})
+(def stepped (atom #{}))
 
-(defn clear [square]
-  (do 
+(defn clear [square] 
     (if (= 0 (mine-detector square))
-        (def stepped (into stepped (squares square))))
+        (reset! stepped (into @stepped (squares square))))
         (if (= 0 (mine-detector square))
             (str "     ")
-            (str "  " (mine-detector square) "  "))))
+            (str "  " (mine-detector square) "  ")))
 
 (defn full [square]
   (if (> 10 square)
@@ -244,14 +245,14 @@
 (def mined "  !!!  ")
 
 (defn paint-blank [square]
-  (if (contains? stepped square)
+  (if (contains? @stepped square)
       (if (contains? mines square)
            mined
           (clear-blank square))
       (full-blank square)))
 
 (defn paint [square]
-  (if (contains? stepped square)
+  (if (contains? @stepped square)
       (if (contains? mines square)
            mined
           (clear square))
@@ -279,7 +280,9 @@
   (println (map paint (range 30 36)))
   (println (map paint-blank (range 30 36))))
 
-(defn step [square] (do (def stepped (conj stepped square)) (painter)))
+(defn step [square]
+  (reset! stepped (conj @stepped square))
+  (painter))
 
 (defn get-input
   "Waits for user to enter text and hit enter, then cleans the input"
@@ -292,9 +295,9 @@
 
 (defn prompt-step [] 
   (if (= (count squares)
-         (+ (count stepped) (count mines))) 
+         (+ (count @stepped) (count mines))) 
       (println "GOOD JOB!")      
-  (if (< 0 (count ((fn [a b] (set (filter #(contains? b %) a))) stepped mines)))
+  (if (< 0 (count ((fn [a b] (set (filter #(contains? b %) a))) @stepped mines)))
             (println "Blam. You died.")
       (do (println "Tread lightly, if you dare...")
                 (let [square (Integer. (get-input))] (step square))
