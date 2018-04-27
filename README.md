@@ -3,6 +3,10 @@
 Install [Clojure CLI tools](https://clojure.org/guides/getting_started) and enter (from the project directory):
 
     $ clj -m tsweep
+    
+Or run it with Java:
+ 
+     $ java -jar mine-0.1.0-SNAPSHOT-standalone.jar
 
 ## How it works:
 
