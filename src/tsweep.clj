@@ -1,4 +1,5 @@
 (ns tsweep
+(:require [clojure.set])
   (:gen-class))
 
 (def rows 6)
@@ -127,8 +128,7 @@
 
 (defn mine-detector [square]
   (count
-    ((fn [a b] (set (filter #(contains? b %) a)))
-        mines (set (squares square)))))
+    (clojure.set/intersection mines (set (squares square)))))
 
 (def stepped (atom #{}))
 
@@ -186,7 +186,6 @@
   (render-board))
 
 (defn get-input
-  "Waits for user to enter text and hit enter, then cleans the input"
   ([] (get-input "0"))
   ([default]
      (let [input (clojure.string/trim (read-line))]
@@ -197,9 +196,19 @@
 (defn prompt [] 
   (if (= (count squares)
          (+ (count @stepped) (count mines))) 
-      (println "GOOD JOB!")      
-  (if (< 0 (count ((fn [a b] (set (filter #(contains? b %) a))) @stepped mines)))
-            (println "Bam. You blew up.")
+      (do
+	(println " ▄▄ •             ·▄▄▄▄    ")
+	(println "▐█ ▀ ▪▪     ▪     ██▪ ██   ")
+	(println "▄█ ▀█▄ ▄█▀▄  ▄█▀▄ ▐█· ▐█▌  ")
+	(println "▐█▄▪▐█▐█▌.▐▌▐█▌.▐▌██. ██   ")
+	(println "·▀▀▀▀  ▀█▄▀▪ ▀█▄▀▪▀▀▀▀▀•   ")
+	(println "     ▐▄▄▄      ▄▄▄▄· ▄▄ ▄▄ ")
+	(println "      ·██▪     ▐█ ▀█▪██▌██▌")
+	(println "    ▪▄ ██ ▄█▀▄ ▐█▀▀█▄▐█·▐█·")
+	(println "    ▐▌▐█▌▐█▌.▐▌██▄▪▐█.▀ .▀ ")
+	(println "     ▀▀▀• ▀█▄▀▪·▀▀▀▀  ▀  ▀ "))      
+  (if (< 0 (count (clojure.set/intersection @stepped mines)))
+            (println "Blam!!! You blew up.")
       (do (println "Tread lightly, if you dare...")
                 (let [square (Integer. (get-input))] (step square))
                 (prompt)))))
@@ -207,3 +216,7 @@
 (defn -main []
   (render-board)
   (prompt))
+
+
+
+
