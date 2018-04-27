@@ -1,21 +1,11 @@
-To play, just download the .jar file and launch with:
+# To run:
 
-    $ java -jar PATH/mine-0.1.0-SNAPSHOT-standalone.jar
+Install [Clojure CLI tools](https://clojure.org/guides/getting_started) and enter (from the project directory):
 
-where PATH points to the folder it's in.
-
-[![asciicast](https://asciinema.org/a/177672.png)](https://asciinema.org/a/177672)
-
-## Or, from source:
-
-Install Leiningen, clone this repo and enter (from its directory):
-
-    $ lein run
+    $ clj -m tsweep
 
 ## How it works:
 
-The grid size is configurable, and is represented as an indexed vector of hashsets which are
-dynamically assembled by a series of functions that determine where the edges of the board are for that configuration.
+A random set of integers is chosen to represent the mines, which are uncovered as they are stepped on to reveal the number of mines contained in the adjacent squares. The board's internal representation is dynamically generated based on a given number of rows (set here to 6).
 
-A random set of integers is chosen to represent the squares with mines, which are uncovered as they are stepped on to indicate how many mines are surrounding them.
-
+[![asciicast](https://asciinema.org/a/177672.png)](https://asciinema.org/a/177672)
