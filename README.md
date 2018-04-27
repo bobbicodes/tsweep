@@ -6,7 +6,7 @@ Install [Clojure CLI tools](https://clojure.org/guides/getting_started) and ente
     
 Or run it with Java:
  
-     $ java -jar mine-0.1.0-SNAPSHOT-standalone.jar
+     $ java -jar tsweep.jar
 
 ## How it works:
 
