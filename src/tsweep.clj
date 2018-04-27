@@ -260,29 +260,22 @@
 
 (def board-rows (partition rows squares))
 
-(defn painter []
-  (println (map paint-blank (range rows)))
-  (println (map paint (range rows)))
-  (println (map paint-blank (range rows)))
-(println (map paint-blank (range 6 12)))
-  (println (map paint (range 6 12)))
-  (println (map paint-blank (range 6 12)))
-(println (map paint-blank (range 12 18)))
-  (println (map paint (range 12 18)))
-  (println (map paint-blank (range 12 18)))
-(println (map paint-blank (range 18 24)))
-  (println (map paint (range 18 24)))
-  (println (map paint-blank (range 18 24)))
-(println (map paint-blank (range 24 30)))
-  (println (map paint (range 24 30)))
-  (println (map paint-blank (range 24 30)))
-(println (map paint-blank (range 30 36)))
-  (println (map paint (range 30 36)))
-  (println (map paint-blank (range 30 36))))
+(defn render [start end]
+  (println (map paint-blank (range start end)))
+  (println (map paint (range start end)))
+  (println (map paint-blank (range start end))))
+
+(defn render-board []
+  (render 0 6)
+  (render 6 12)
+  (render 12 18)
+  (render 18 24)
+  (render 24 30)
+  (render 30 36))
 
 (defn step [square]
   (reset! stepped (conj @stepped square))
-  (painter))
+  (render-board))
 
 (defn get-input
   "Waits for user to enter text and hit enter, then cleans the input"
@@ -293,16 +286,16 @@
          default
          (clojure.string/lower-case input)))))
 
-(defn prompt-step [] 
+(defn prompt [] 
   (if (= (count squares)
          (+ (count @stepped) (count mines))) 
       (println "GOOD JOB!")      
   (if (< 0 (count ((fn [a b] (set (filter #(contains? b %) a))) @stepped mines)))
-            (println "Blam. You died.")
+            (println "Bam. You blew up.")
       (do (println "Tread lightly, if you dare...")
                 (let [square (Integer. (get-input))] (step square))
-                (prompt-step)))))
+                (prompt)))))
 
 (defn -main []
-  (painter)
-  (prompt-step))
+  (render-board)
+  (prompt))
