@@ -1,8 +1,8 @@
 # To run:
 
 ```
-$ cd tsweep
-tsweep$ lein run
+~$ cd tsweep
+~/tsweep$ lein run
 ```
 
 ## How it works:
