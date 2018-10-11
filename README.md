@@ -2,7 +2,7 @@
 
 ```
 $ cd tsweep
-/tsweep$ lein run
+tsweep$ lein run
 ```
 
 ## How it works:
