@@ -1,4 +1,4 @@
-(ns tsweep
+(ns tsweep.core
   (:require [clojure.set :as set]
             [clojure.string :as str]))
 
