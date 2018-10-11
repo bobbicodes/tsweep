@@ -1,12 +1,9 @@
 # To run:
 
-Install [Clojure CLI tools](https://clojure.org/guides/getting_started) and enter (from the project directory):
-
-    $ clj -m tsweep
-    
-Or run it with Java:
- 
-     $ java -jar tsweep.jar
+```
+$ cd tsweep
+/tsweep$ lein run
+```
 
 ## How it works:
 
